@@ -31,6 +31,7 @@ void setup() {
   // timer.setDateTime(2018, 1, 14, 17, 29, 0); // Do only once
   timer.start();
   environment.setUpDHT(DHT_PIN);
+  environment.setUpSoilMoistureSensor(WATER_MOISTURE_PIN, 500);
   // environment.setUpValve(VALVE_PIN);
   // environment.setUpWaterTankSensor(WATER_TANK_PIN);
   // environment.setUpWaterTraySensor(WATER_LEVEL_PIN, 500);
@@ -48,6 +49,8 @@ void showTime() {
 void loop() {
   // Serial.print(environment.getAirTemperature());
   // Serial.print("\n");
+  Serial.print(environment.getSoilMoisture());
+  Serial.print("\n");
   delay(1000);
   // if (environment.trayNeedsWater()) {
   //   environment.openValve();

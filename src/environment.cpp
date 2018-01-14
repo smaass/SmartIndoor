@@ -43,6 +43,20 @@ bool Environment::tankNeedsWater() {
   return digitalRead(waterTankSensorPin) == LOW;
 };
 
+void Environment::setUpSoilMoistureSensor(uint8_t sensor_pin, uint16_t threshold) {
+  soilMoistureSensorPin = sensor_pin;
+  soilMoistureSensorThreshold = threshold;
+};
+
+int Environment::getSoilMoisture() {
+  return analogRead(soilMoistureSensorPin);
+};
+
+bool Environment::soilNeedsWater() {
+  int soilMoisture = getSoilMoisture();
+  return soilMoisture > soilMoistureSensorThreshold;
+};
+
 void Environment::setUpWaterTraySensor(uint8_t sensor_pin, uint16_t threshold) {
   waterTraySensorPin = sensor_pin;
   waterTraySensorThreshold = threshold;

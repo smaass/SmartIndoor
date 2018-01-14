@@ -3,8 +3,8 @@
 class Environment {
 
 private:
-  uint8_t waterTankSensorPin, waterTraySensorPin, valvePin;
-  int waterTraySensorThreshold;
+  uint8_t waterTankSensorPin, waterTraySensorPin, valvePin, soilMoistureSensorPin;
+  int waterTraySensorThreshold, soilMoistureSensorThreshold;
   float airHumidity, airTemperature;
   unsigned long lastDHTUpdate;
   unsigned long minDHTSamplingPeriod;
@@ -20,6 +20,10 @@ public:
 
   void setUpWaterTankSensor(uint8_t sensor_pin);
   bool tankNeedsWater();
+
+  void setUpSoilMoistureSensor(uint8_t sensor_pin, uint16_t threshold);
+  int getSoilMoisture();
+  bool soilNeedsWater();
 
   void setUpWaterTraySensor(uint8_t sensor_pin, uint16_t threshold);
   bool trayNeedsWater();
